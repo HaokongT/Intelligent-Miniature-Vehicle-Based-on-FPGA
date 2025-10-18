@@ -1,0 +1,46 @@
+# do top.do 
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module top
+# 
+# Top level modules:
+# 	top
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module top_vlg_sample_tst
+# -- Compiling module top_vlg_check_tst
+# -- Compiling module top_vlg_vec_tst
+# 
+# Top level modules:
+# 	top_vlg_vec_tst
+# vsim -L cycloneiii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate -c -voptargs=\"+acc\" -t 1ps -novopt work.top_vlg_vec_tst 
+# Loading work.top_vlg_vec_tst
+# Loading work.top
+# Loading cycloneiii_ver.cycloneiii_io_obuf
+# Loading cycloneiii_ver.cycloneiii_io_ibuf
+# Loading cycloneiii_ver.cycloneiii_clkctrl
+# Loading cycloneiii_ver.cycloneiii_mux41
+# Loading cycloneiii_ver.cycloneiii_ena_reg
+# Loading cycloneiii_ver.cycloneiii_lcell_comb
+# Loading altera_ver.dffeas
+# Loading work.top_vlg_sample_tst
+# Loading work.top_vlg_check_tst
+# Loading altera_ver.PRIM_GDFF_LOW
+# ERROR! Vector Mismatch for output port left[0] :: @time = 1000000.000 ps
+#      Expected value = 00
+#      Real value = 01
+# ERROR! Vector Mismatch for output port right[1] :: @time = 1000000.000 ps
+#      Expected value = 00
+#      Real value = 10
+# ERROR! Vector Mismatch for output port obstacle_detected :: @time = 1700000.000 ps
+#      Expected value = 0
+#      Real value = 1
+# ERROR! Vector Mismatch for output port right[0] :: @time = 2450000.000 ps
+#      Expected value = 00
+#      Real value = 01
+# ERROR! Vector Mismatch for output port left[1] :: @time = 4200000.000 ps
+#      Expected value = 00
+#      Real value = 10
+#           5 mismatched vectors : Simulation failed !
+# ** Note: $finish    : Waveform5.vwf.vt(349)
+#    Time: 10 us  Iteration: 0  Instance: /top_vlg_vec_tst/tb_out

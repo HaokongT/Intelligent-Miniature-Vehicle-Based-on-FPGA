@@ -1,0 +1,77 @@
+module top(
+    input clk,
+    input reset,
+    input infrared_a,
+    input infrared_b,
+    input infrared_c,
+    input infrared_d,
+    input echo1,
+    input echo2,
+    input echo3,
+    output trig1,
+    output trig2,
+    output trig3,
+    output [3:0] left1,
+    output [3:0] left2,
+    output [3:0] right1,
+    output [3:0] right2
+);
+
+    // Internal wires for connecting modules
+    wire forward, rightt, leftt, backward;
+    wire [9:0] count_from_fp;
+    wire CO_from_fp;
+    wire [3:0] count1_from_zhankong;
+    wire CO_from_zhankong;
+
+    // Instance of CarController
+    CarController car_controller (
+        .clk(clk),
+        .reset(reset),
+        .infrared_a(infrared_a),
+        .infrared_b(infrared_b),
+        .infrared_c(infrared_c),
+        .infrared_d(infrared_d),
+        .forward(forward),
+        .rightt(rightt),
+        .leftt(leftt),
+        .backward(backward)
+    );
+
+    // Instance of fp
+    fp fp_instance (
+        .clk(clk),
+        .count(count_from_fp),
+        .CO(CO_from_fp)
+    );
+
+    // Instance of xiaoche
+    xiaoche xiaoche_instance (
+        .clk(clk),
+        .trig1(trig1),
+        .trig2(trig2),
+        .trig3(trig3),
+        .echo1(echo1),
+        .echo2(echo2),
+        .echo3(echo3),
+        .left1(left1),
+        .left2(left2),
+        .right1(right1),
+        .right2(right2)
+    );
+
+    // Instance of zhankongbiketiao
+    zhankongbiketiao zhankong (
+        .clk(clk),
+        .C(4'b0000), // Example value, need to connect actual signals
+        .C1(4'b0000), // Example value, need to connect actual signals
+        .rst(reset),
+        .count1(count1_from_zhankong),
+        .CO(CO_from_zhankong)
+    );
+
+    // Additional logic to integrate the modules
+    // For example, you might use CarController outputs to override xiaoche's motor controls
+    // Or use fp's CO for timing in other modules
+
+endmodule

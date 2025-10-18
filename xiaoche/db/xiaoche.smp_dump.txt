@@ -1,0 +1,15 @@
+
+State Machine - |xiaoche|current_state3
+Name current_state3.COUNTING 
+current_state3.IDLE 0 
+current_state3.COUNTING 1 
+
+State Machine - |xiaoche|current_state2
+Name current_state2.COUNTING 
+current_state2.IDLE 0 
+current_state2.COUNTING 1 
+
+State Machine - |xiaoche|current_state1
+Name current_state1.COUNTING 
+current_state1.IDLE 0 
+current_state1.COUNTING 1 

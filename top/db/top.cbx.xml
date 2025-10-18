@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="top">
+		<CBX_INST_ENTRY INSTANCE_NAME="|top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_mhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_mhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_mhm.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

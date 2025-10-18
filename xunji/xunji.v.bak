@@ -1,0 +1,65 @@
+module xunji(
+    input clk,
+    input reset,
+    input track1,  // 最左边
+    input track2,  // 左中间
+    input track3,  // 右中间
+    input track4,  // 最右边
+    output reg [1:0] left_dir,
+    output reg [1:0] right_dir,
+    output reg [7:0] pwm_value
+);
+
+    // 参数定义
+    parameter PWM_5_PERCENT = 13;   // 5%占空比 (255 * 0.05 ≈ 13)
+    parameter PWM_8_PERCENT = 20;   // 8%占空比 (255 * 0.08 ≈ 20)
+    parameter PWM_20_PERCENT = 51;  // 20%占空比 (255 * 0.2 ≈ 51)
+    parameter PWM_100_PERCENT = 255;// 100%占空比
+
+    // 寻迹逻辑
+    always @(posedge clk or negedge reset) begin
+        if (!reset) begin
+            left_dir <= 2'b00;
+            right_dir <= 2'b00;
+            pwm_value <= PWM_100_PERCENT;
+        end else begin
+            // 中间两路任意检测到 - 直行，PWM 5%
+            if (track2 == 0 || track3 == 0) begin
+                left_dir <= 2'b01;  // 正转
+                right_dir <= 2'b01; // 正转
+                pwm_value <= PWM_5_PERCENT;
+            end
+            // 左边中间检测到 - 右转，PWM 5%
+            else if (track2 == 0) begin
+                left_dir <= 2'b01;  // 正转
+                right_dir <= 2'b10; // 反转
+                pwm_value <= PWM_5_PERCENT;
+            end
+            // 右边中间检测到 - 左转，PWM 5%
+            else if (track3 == 0) begin
+                left_dir <= 2'b10;  // 反转
+                right_dir <= 2'b01; // 正转
+                pwm_value <= PWM_5_PERCENT;
+            end
+            // 只有左边检测到 - 右转，PWM 8%
+            else if (track1 == 0) begin
+                left_dir <= 2'b01;  // 正转
+                right_dir <= 2'b10; // 反转
+                pwm_value <= PWM_8_PERCENT;
+            end
+            // 只有右边检测到 - 左转，PWM 8%
+            else if (track4 == 0) begin
+                left_dir <= 2'b10;  // 反转
+                right_dir <= 2'b01; // 正转
+                pwm_value <= PWM_8_PERCENT;
+            end
+            // 未检测到任何线 - 停止
+            else begin
+                left_dir <= 2'b00;
+                right_dir <= 2'b00;
+                pwm_value <= PWM_100_PERCENT;
+            end
+        end
+    end
+
+endmodule

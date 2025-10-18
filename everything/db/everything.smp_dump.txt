@@ -1,0 +1,12 @@
+
+State Machine - |everything|current_state
+Name current_state.FORWARD_2S_4 current_state.RIGHT_200MS_3 current_state.FORWARD_2S_3 current_state.RIGHT_200MS_2 current_state.FORWARD_2S_2 current_state.RIGHT_200MS current_state.FORWARD_2S current_state.IDLE current_state.RIGHT_200MS_4 
+current_state.IDLE 0 0 0 0 0 0 0 0 0 
+current_state.FORWARD_2S 0 0 0 0 0 0 1 1 0 
+current_state.RIGHT_200MS 0 0 0 0 0 1 0 1 0 
+current_state.FORWARD_2S_2 0 0 0 0 1 0 0 1 0 
+current_state.RIGHT_200MS_2 0 0 0 1 0 0 0 1 0 
+current_state.FORWARD_2S_3 0 0 1 0 0 0 0 1 0 
+current_state.RIGHT_200MS_3 0 1 0 0 0 0 0 1 0 
+current_state.FORWARD_2S_4 1 0 0 0 0 0 0 1 0 
+current_state.RIGHT_200MS_4 0 0 0 0 0 0 0 1 1 

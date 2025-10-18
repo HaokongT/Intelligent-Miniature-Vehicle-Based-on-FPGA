@@ -1,0 +1,77 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -46.101
+TNS   : -2028.262
+
+Type  : Slow 1200mV 85C Model Setup 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -3.845
+TNS   : -262.247
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : 0.432
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -385.159
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -1.487
+TNS   : -196.284
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -41.972
+TNS   : -1850.012
+
+Type  : Slow 1200mV 0C Model Setup 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -3.388
+TNS   : -232.259
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.217
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : 0.382
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -385.159
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -1.487
+TNS   : -196.284
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -19.345
+TNS   : -722.848
+
+Type  : Fast 1200mV 0C Model Setup 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -1.155
+TNS   : -45.619
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : -0.035
+TNS   : -0.035
+
+Type  : Fast 1200mV 0C Model Hold 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : 0.178
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -276.792
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'xiaoche:xiaoche_instance|clk_div[4]'
+Slack : -1.000
+TNS   : -132.000
+
+------------------------------------------------------------

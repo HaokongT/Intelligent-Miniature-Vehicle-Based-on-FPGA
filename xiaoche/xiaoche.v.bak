@@ -1,0 +1,124 @@
+module xiaoche(
+    output trig1, trig2, trig3,
+    input echo1, echo2, echo3,
+    output reg [3:0] left1, left2, right1, right2,
+    output reg out1 = 0, out2 = 0, out3 = 0,
+    input clk
+);
+
+    parameter IDLE = 0;
+    parameter COUNTING = 1;
+    
+    reg [1:0] current_state1 = IDLE, current_state2 = IDLE, current_state3 = IDLE;
+    integer time1 = 0, time2 = 0, time3 = 0;
+    reg co;
+    integer count = 0;
+    
+    assign trig1 = co;
+    assign trig2 = co;
+    assign trig3 = co;
+    assign co = (count < 300);
+    
+    always @(posedge clk) begin
+        if (count == 5000000)
+            count <= 0;
+        else
+            count <= count + 1;
+    end
+    
+    // echo1计数
+    always @(posedge clk) begin
+        case (current_state1)
+            IDLE: begin
+                if (echo1) begin
+                    time1 <= 0;
+                    current_state1 <= COUNTING;
+                end
+            end
+            COUNTING: begin
+                if (echo1)
+                    time1 <= time1 + 1;
+                else
+                    current_state1 <= IDLE;
+            end
+        endcase
+    end
+    
+    // echo2计数
+    always @(posedge clk) begin
+        case (current_state2)
+            IDLE: begin
+                if (echo2) begin
+                    time2 <= 0;
+                    current_state2 <= COUNTING;
+                end
+            end
+            COUNTING: begin
+                if (echo2)
+                    time2 <= time2 + 1;
+                else
+                    current_state2 <= IDLE;
+            end
+        endcase
+    end
+    
+    // echo3计数
+    always @(posedge clk) begin
+        case (current_state3)
+            IDLE: begin
+                if (echo3) begin
+                    time3 <= 0;
+                    current_state3 <= COUNTING;
+                end
+            end
+            COUNTING: begin
+                if (echo3)
+                    time3 <= time3 + 1;
+                else
+                    current_state3 <= IDLE;
+            end
+        endcase
+    end
+    
+    always @(*) begin
+        if (!echo1) out1 = (time1 < 20);
+        if (!echo2) out2 = (time2 < 20);
+        if (!echo3) out3 = (time3 < 20);
+    end
+    
+    always @(posedge clk) begin
+        if (!out1 && !out2 && !out3) begin
+            left1 <= 4'b0110; left2 <= 4'b0000; 
+            right1 <= 4'b0110; right2 <= 4'b0000;
+        end
+        else if (out1 && !out2 && !out3) begin
+            left1 <= 4'b1010; left2 <= 4'b0000; 
+            right1 <= 4'b0010; right2 <= 4'b0000;
+        end
+        else if (out1 && !out2 && out3) begin
+            left1 <= 4'b0111; left2 <= 4'b0000; 
+            right1 <= 4'b0111; right2 <= 4'b0000;
+        end
+        else if (out1 && out2 && !out3) begin
+            left1 <= 4'b0111; left2 <= 4'b0000; 
+            right1 <= 4'b0000; right2 <= 4'b0111;
+        end
+        else if (out1 && out2 && out3) begin
+            left1 <= 4'b1010; left2 <= 4'b0000; 
+            right1 <= 4'b0000; right2 <= 4'b1010;
+        end
+        else if (!out1 && out2 && out3) begin
+            left1 <= 4'b0000; left2 <= 4'b0111; 
+            right1 <= 4'b0111; right2 <= 4'b0000;
+        end
+        else if (!out1 && out2 && !out3) begin
+            left1 <= 4'b0000; left2 <= 4'b0000; 
+            right1 <= 4'b1000; right2 <= 4'b0000;
+        end
+        else if (!out1 && !out2 && out3) begin
+            left1 <= 4'b0010; left2 <= 4'b0000; 
+            right1 <= 4'b1010; right2 <= 4'b0000;
+        end
+    end
+
+endmodule

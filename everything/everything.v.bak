@@ -1,0 +1,237 @@
+module everything(
+    input clk,
+    input reset,
+    input [1:0] mode,           // 模式选择
+    output reg [1:0] left,      // 左电机方向
+    output reg [1:0] right,     // 右电机方向
+    output reg [7:0] pwm_value, // PWM值
+    output reg active           // 路径执行激活信号
+);
+
+    // 参数定义
+    parameter CLK_FREQ = 20_000_000; // 20MHz时钟频率
+    
+    // 通用计时器模块
+    reg [31:0] timer = 0;
+    reg timer_running = 0;
+    reg [31:0] timer_target = 0;
+    wire timer_done = (timer >= timer_target) && timer_running;
+    
+    // 计时器控制任务
+    task start_timer;
+        input [31:0] duration;
+        begin
+            timer_target = duration;
+            timer = 0;
+            timer_running = 1;
+        end
+    endtask
+    
+    // 状态定义
+    parameter IDLE = 0;
+    parameter FORWARD = 1;
+    parameter RIGHT_TURN = 2;
+    parameter LEFT_TURN = 3;
+    parameter BACKWARD = 4;
+    
+    reg [2:0] current_state = IDLE;
+    reg [2:0] next_state = IDLE;
+    
+    // 动作序列定义
+    parameter MAX_ACTIONS = 16;
+    reg [2:0] action_sequence [0:MAX_ACTIONS-1]; // 动作类型
+    reg [31:0] action_duration [0:MAX_ACTIONS-1]; // 动作持续时间
+    reg [3:0] action_count = 0; // 动作总数
+    reg [3:0] current_action = 0; // 当前执行的动作索引
+    
+    // PWM参数
+    parameter PWM_FULL = 200;  // 全速
+    parameter PWM_SLOW = 100;  // 慢速
+    parameter PWM_TURN = 80;   // 转向速度
+    
+    // 初始化动作序列
+    initial begin
+        // 模式2: 正方形路径
+        action_sequence[0] = FORWARD;    action_duration[0] = CLK_FREQ * 2;      // 直行2秒
+        action_sequence[1] = RIGHT_TURN; action_duration[1] = CLK_FREQ / 5;      // 右转200ms
+        action_sequence[2] = FORWARD;    action_duration[2] = CLK_FREQ * 2;      // 直行2秒
+        action_sequence[3] = RIGHT_TURN; action_duration[3] = CLK_FREQ / 5;      // 右转200ms
+        action_sequence[4] = FORWARD;    action_duration[4] = CLK_FREQ * 2;      // 直行2秒
+        action_sequence[5] = RIGHT_TURN; action_duration[5] = CLK_FREQ / 5;      // 右转200ms
+        action_sequence[6] = FORWARD;    action_duration[6] = CLK_FREQ * 2;      // 直行2秒
+        action_sequence[7] = RIGHT_TURN; action_duration[7] = CLK_FREQ / 5;      // 右转200ms
+        action_count = 8;
+        
+        // 模式3: 可以定义其他路径
+        // 例如: 前进1秒，左转300ms，后退2秒，右转400ms
+        action_sequence[8] = FORWARD;    action_duration[8] = CLK_FREQ * 1;      // 直行1秒
+        action_sequence[9] = LEFT_TURN;  action_duration[9] = CLK_FREQ * 0.3;    // 左转300ms
+        action_sequence[10] = BACKWARD;  action_duration[10] = CLK_FREQ * 2;     // 后退2秒
+        action_sequence[11] = RIGHT_TURN;action_duration[11] = CLK_FREQ * 0.4;   // 右转400ms
+        // 可以继续添加更多动作...
+    end
+    
+    // 主状态机
+    always @(posedge clk or negedge reset) begin
+        if (!reset) begin
+            current_state <= IDLE;
+            timer <= 0;
+            timer_running <= 0;
+            left <= 2'b00;
+            right <= 2'b00;
+            pwm_value <= PWM_FULL;
+            active <= 0;
+            current_action <= 0;
+        end else begin
+            // 更新计时器
+            if (timer_running && timer < timer_target) begin
+                timer <= timer + 1;
+            end
+            
+            // 只有模式2或3时激活
+            if (mode == 2'b10 || mode == 2'b11) begin
+                active <= 1;
+                
+                case (current_state)
+                    IDLE: begin
+                        // 根据模式选择起始状态
+                        if (mode == 2'b10) begin
+                            // 模式2: 从第一个动作开始
+                            current_action <= 0;
+                            current_state <= action_sequence[0];
+                            start_timer(action_duration[0]);
+                        end else if (mode == 2'b11) begin
+                            // 模式3: 从第一个动作开始
+                            current_action <= 0;
+                            current_state <= action_sequence[0];
+                            start_timer(action_duration[0]);
+                        end
+                    end
+                    
+                    FORWARD: begin
+                        left <= 2'b01;   // 正转
+                        right <= 2'b01;  // 正转
+                        pwm_value <= PWM_FULL;
+                        
+                        if (timer_done) begin
+                            // 移动到下一个动作
+                            current_action <= current_action + 1;
+                            if (current_action < action_count - 1) begin
+                                current_state <= action_sequence[current_action + 1];
+                                start_timer(action_duration[current_action + 1]);
+                            end else begin
+                                // 完成所有动作，根据模式决定是否循环
+                                if (mode == 2'b10) begin
+                                    // 模式2循环执行
+                                    current_action <= 0;
+                                    current_state <= action_sequence[0];
+                                    start_timer(action_duration[0]);
+                                end else begin
+                                    // 模式3执行一次后停止
+                                    current_state <= IDLE;
+                                    timer_running <= 0;
+                                end
+                            end
+                        end
+                    end
+                    
+                    RIGHT_TURN: begin
+                        left <= 2'b01;   // 正转
+                        right <= 2'b10;  // 反转（右转）
+                        pwm_value <= PWM_TURN;
+                        
+                        if (timer_done) begin
+                            // 移动到下一个动作
+                            current_action <= current_action + 1;
+                            if (current_action < action_count - 1) begin
+                                current_state <= action_sequence[current_action + 1];
+                                start_timer(action_duration[current_action + 1]);
+                            end else begin
+                                // 完成所有动作，根据模式决定是否循环
+                                if (mode == 2'b10) begin
+                                    // 模式2循环执行
+                                    current_action <= 0;
+                                    current_state <= action_sequence[0];
+                                    start_timer(action_duration[0]);
+                                end else begin
+                                    // 模式3执行一次后停止
+                                    current_state <= IDLE;
+                                    timer_running <= 0;
+                                end
+                            end
+                        end
+                    end
+                    
+                    LEFT_TURN: begin
+                        left <= 2'b10;   // 反转
+                        right <= 2'b01;  // 正转（左转）
+                        pwm_value <= PWM_TURN;
+                        
+                        if (timer_done) begin
+                            // 移动到下一个动作
+                            current_action <= current_action + 1;
+                            if (current_action < action_count - 1) begin
+                                current_state <= action_sequence[current_action + 1];
+                                start_timer(action_duration[current_action + 1]);
+                            end else begin
+                                // 完成所有动作，根据模式决定是否循环
+                                if (mode == 2'b10) begin
+                                    // 模式2循环执行
+                                    current_action <= 0;
+                                    current_state <= action_sequence[0];
+                                    start_timer(action_duration[0]);
+                                end else begin
+                                    // 模式3执行一次后停止
+                                    current_state <= IDLE;
+                                    timer_running <= 0;
+                                end
+                            end
+                        end
+                    end
+                    
+                    BACKWARD: begin
+                        left <= 2'b10;   // 反转
+                        right <= 2'b10;  // 反转（后退）
+                        pwm_value <= PWM_SLOW;
+                        
+                        if (timer_done) begin
+                            // 移动到下一个动作
+                            current_action <= current_action + 1;
+                            if (current_action < action_count - 1) begin
+                                current_state <= action_sequence[current_action + 1];
+                                start_timer(action_duration[current_action + 1]);
+                            end else begin
+                                // 完成所有动作，根据模式决定是否循环
+                                if (mode == 2'b10) begin
+                                    // 模式2循环执行
+                                    current_action <= 0;
+                                    current_state <= action_sequence[0];
+                                    start_timer(action_duration[0]);
+                                end else begin
+                                    // 模式3执行一次后停止
+                                    current_state <= IDLE;
+                                    timer_running <= 0;
+                                end
+                            end
+                        end
+                    end
+                    
+                    default: begin
+                        current_state <= IDLE;
+                    end
+                endcase
+            end else begin
+                // 非路径模式，重置状态
+                current_state <= IDLE;
+                timer <= 0;
+                timer_running <= 0;
+                left <= 2'b00;
+                right <= 2'b00;
+                pwm_value <= PWM_FULL;
+                active <= 0;
+                current_action <= 0;
+            end
+        end
+    end
+
+endmodule

@@ -1,0 +1,412 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "09/03/2025 11:00:22"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    top
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module top_vlg_sample_tst(
+	clk,
+	echo1,
+	echo2,
+	echo3,
+	enable,
+	reset,
+	sampler_tx
+);
+input  clk;
+input  echo1;
+input  echo2;
+input  echo3;
+input  enable;
+input  reset;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(clk or echo1 or echo2 or echo3 or enable or reset)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module top_vlg_check_tst (
+	left,
+	right,
+	trig1,
+	trig2,
+	trig3,
+	sampler_rx
+);
+input [1:0] left;
+input [1:0] right;
+input  trig1;
+input  trig2;
+input  trig3;
+input sampler_rx;
+
+reg [1:0] left_expected;
+reg [1:0] right_expected;
+reg  trig1_expected;
+reg  trig2_expected;
+reg  trig3_expected;
+
+reg [1:0] left_prev;
+reg [1:0] right_prev;
+reg  trig1_prev;
+reg  trig2_prev;
+reg  trig3_prev;
+
+reg [1:0] left_expected_prev;
+reg [1:0] right_expected_prev;
+reg  trig1_expected_prev;
+reg  trig2_expected_prev;
+reg  trig3_expected_prev;
+
+reg [1:0] last_left_exp;
+reg [1:0] last_right_exp;
+reg  last_trig1_exp;
+reg  last_trig2_exp;
+reg  last_trig3_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:5] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 5'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	left_prev = left;
+	right_prev = right;
+	trig1_prev = trig1;
+	trig2_prev = trig2;
+	trig3_prev = trig3;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	left_expected_prev = left_expected;
+	right_expected_prev = right_expected;
+	trig1_expected_prev = trig1_expected;
+	trig2_expected_prev = trig2_expected;
+	trig3_expected_prev = trig3_expected;
+end
+
+
+// expected left[ 1 ]
+initial
+begin
+	left_expected[1] = 1'bX;
+	left_expected[1] = #999000 1'b0;
+end 
+// expected left[ 0 ]
+initial
+begin
+	left_expected[0] = 1'bX;
+	left_expected[0] = #999000 1'b0;
+end 
+// expected right[ 1 ]
+initial
+begin
+	right_expected[1] = 1'bX;
+	right_expected[1] = #999000 1'b0;
+end 
+// expected right[ 0 ]
+initial
+begin
+	right_expected[0] = 1'bX;
+	right_expected[0] = #999000 1'b0;
+end 
+
+// expected trig1
+initial
+begin
+	trig1_expected = 1'bX;
+	trig1_expected = #999000 1'b0;
+end 
+
+// expected trig2
+initial
+begin
+	trig2_expected = 1'bX;
+	trig2_expected = #999000 1'b0;
+end 
+
+// expected trig3
+initial
+begin
+	trig3_expected = 1'bX;
+	trig3_expected = #999000 1'b0;
+end 
+// generate trigger
+always @(left_expected or left or right_expected or right or trig1_expected or trig1 or trig2_expected or trig2 or trig3_expected or trig3)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected left = %b | expected right = %b | expected trig1 = %b | expected trig2 = %b | expected trig3 = %b | ",left_expected_prev,right_expected_prev,trig1_expected_prev,trig2_expected_prev,trig3_expected_prev);
+	$display("| real left = %b | real right = %b | real trig1 = %b | real trig2 = %b | real trig3 = %b | ",left_prev,right_prev,trig1_prev,trig2_prev,trig3_prev);
+`endif
+	if (
+		( left_expected_prev[0] !== 1'bx ) && ( left_prev[0] !== left_expected_prev[0] )
+		&& ((left_expected_prev[0] !== last_left_exp[0]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port left[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", left_expected_prev);
+		$display ("     Real value = %b", left_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_left_exp[0] = left_expected_prev[0];
+	end
+	if (
+		( left_expected_prev[1] !== 1'bx ) && ( left_prev[1] !== left_expected_prev[1] )
+		&& ((left_expected_prev[1] !== last_left_exp[1]) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port left[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", left_expected_prev);
+		$display ("     Real value = %b", left_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_left_exp[1] = left_expected_prev[1];
+	end
+	if (
+		( right_expected_prev[0] !== 1'bx ) && ( right_prev[0] !== right_expected_prev[0] )
+		&& ((right_expected_prev[0] !== last_right_exp[0]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port right[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", right_expected_prev);
+		$display ("     Real value = %b", right_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_right_exp[0] = right_expected_prev[0];
+	end
+	if (
+		( right_expected_prev[1] !== 1'bx ) && ( right_prev[1] !== right_expected_prev[1] )
+		&& ((right_expected_prev[1] !== last_right_exp[1]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port right[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", right_expected_prev);
+		$display ("     Real value = %b", right_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_right_exp[1] = right_expected_prev[1];
+	end
+	if (
+		( trig1_expected_prev !== 1'bx ) && ( trig1_prev !== trig1_expected_prev )
+		&& ((trig1_expected_prev !== last_trig1_exp) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port trig1 :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", trig1_expected_prev);
+		$display ("     Real value = %b", trig1_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_trig1_exp = trig1_expected_prev;
+	end
+	if (
+		( trig2_expected_prev !== 1'bx ) && ( trig2_prev !== trig2_expected_prev )
+		&& ((trig2_expected_prev !== last_trig2_exp) ||
+			on_first_change[4])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port trig2 :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", trig2_expected_prev);
+		$display ("     Real value = %b", trig2_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[4] = 1'b0;
+		last_trig2_exp = trig2_expected_prev;
+	end
+	if (
+		( trig3_expected_prev !== 1'bx ) && ( trig3_prev !== trig3_expected_prev )
+		&& ((trig3_expected_prev !== last_trig3_exp) ||
+			on_first_change[5])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port trig3 :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", trig3_expected_prev);
+		$display ("     Real value = %b", trig3_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[5] = 1'b0;
+		last_trig3_exp = trig3_expected_prev;
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#10000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module top_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg clk;
+reg echo1;
+reg echo2;
+reg echo3;
+reg enable;
+reg reset;
+// wires                                               
+wire [1:0] left;
+wire [1:0] right;
+wire trig1;
+wire trig2;
+wire trig3;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+top i1 (
+// port map - connection between master ports and signals/registers   
+	.clk(clk),
+	.echo1(echo1),
+	.echo2(echo2),
+	.echo3(echo3),
+	.enable(enable),
+	.left(left),
+	.reset(reset),
+	.right(right),
+	.trig1(trig1),
+	.trig2(trig2),
+	.trig3(trig3)
+);
+
+// clk
+always
+begin
+	clk = 1'b0;
+	clk = #25000 1'b1;
+	#25000;
+end 
+
+// echo1
+always
+begin
+	echo1 = 1'b0;
+	echo1 = #500000 1'b1;
+	#500000;
+end 
+
+// echo2
+always
+begin
+	echo2 = 1'b0;
+	echo2 = #1000000 1'b1;
+	#1000000;
+end 
+
+// echo3
+initial
+begin
+	repeat(3)
+	begin
+		echo3 = 1'b0;
+		echo3 = #1500000 1'b1;
+		# 1500000;
+	end
+	echo3 = 1'b0;
+end 
+
+// enable
+initial
+begin
+	enable = 1'b1;
+end 
+
+// reset
+initial
+begin
+	reset = 1'b0;
+end 
+
+top_vlg_sample_tst tb_sample (
+	.clk(clk),
+	.echo1(echo1),
+	.echo2(echo2),
+	.echo3(echo3),
+	.enable(enable),
+	.reset(reset),
+	.sampler_tx(sampler)
+);
+
+top_vlg_check_tst tb_out(
+	.left(left),
+	.right(right),
+	.trig1(trig1),
+	.trig2(trig2),
+	.trig3(trig3),
+	.sampler_rx(sampler)
+);
+endmodule
+

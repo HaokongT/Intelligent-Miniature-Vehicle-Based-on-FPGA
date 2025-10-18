@@ -1,0 +1,6 @@
+
+State Machine - |PosCounter|curr_state
+Name curr_state.S0 curr_state.S2 curr_state.S1 
+curr_state.S0 0 0 0 
+curr_state.S1 1 0 1 
+curr_state.S2 1 1 0 

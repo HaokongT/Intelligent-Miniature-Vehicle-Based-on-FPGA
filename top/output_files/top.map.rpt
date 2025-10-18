@@ -1,0 +1,802 @@
+Analysis & Synthesis report for top
+Sat Oct 18 22:42:52 2025
+Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |top|xiaoche:xiaoche_instance|steer_state
+  9. State Machine - |top|xiaoche:xiaoche_instance|boche:boche_executor|current_state
+ 10. State Machine - |top|xiaoche:xiaoche_instance|everything:path_executor|current_state
+ 11. State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|curr_state
+ 12. State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|curr_state
+ 13. State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|curr_state
+ 14. Registers Removed During Synthesis
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance
+ 19. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter1
+ 20. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter2
+ 21. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter3
+ 22. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|everything:path_executor
+ 23. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|boche:boche_executor
+ 24. Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|xunji:xunji_instance
+ 25. Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0
+ 26. Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0
+ 27. Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0
+ 28. Port Connectivity Checks: "xiaoche:xiaoche_instance|boche:boche_executor"
+ 29. Port Connectivity Checks: "xiaoche:xiaoche_instance|everything:path_executor"
+ 30. Elapsed Time Per Partition
+ 31. Analysis & Synthesis Messages
+ 32. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Oct 18 22:42:52 2025       ;
+; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Full Version ;
+; Revision Name                      ; top                                         ;
+; Top-level Entity Name              ; top                                         ;
+; Family                             ; Cyclone III                                 ;
+; Total logic elements               ; 1,565                                       ;
+;     Total combinational functions  ; 1,497                                       ;
+;     Dedicated logic registers      ; 389                                         ;
+; Total registers                    ; 389                                         ;
+; Total pins                         ; 21                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP3C10E144C8       ;                    ;
+; Top-level entity name                                                      ; top                ; top                ;
+; Family name                                                                ; Cyclone III        ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 24          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 3           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-3         ; < 0.1%      ;
+;     Processors 4-24        ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                   ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------+---------+
+; top.v                            ; yes             ; User Verilog HDL File        ; E:/QuartusDate/xiaoche/test13/top/top.v                        ;         ;
+; xiaoche.v                        ; yes             ; Auto-Found Verilog HDL File  ; e:/quartusdate/xiaoche/test13/xiaoche/xiaoche.v                ;         ;
+; poscounter.v                     ; yes             ; Auto-Found Verilog HDL File  ; e:/quartusdate/xiaoche/test13/poscounter/poscounter.v          ;         ;
+; everything.v                     ; yes             ; Auto-Found Verilog HDL File  ; e:/quartusdate/xiaoche/test13/everything/everything.v          ;         ;
+; boche.v                          ; yes             ; Auto-Found Verilog HDL File  ; e:/quartusdate/xiaoche/test13/boche/boche.v                    ;         ;
+; xunji.v                          ; yes             ; Auto-Found Verilog HDL File  ; e:/quartusdate/xiaoche/test13/xunji/xunji.v                    ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; e:/quartus/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; e:/quartus/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; e:/quartus/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal131.inc                   ; yes             ; Megafunction                 ; e:/quartus/quartus/libraries/megafunctions/aglobal131.inc      ;         ;
+; db/lpm_divide_mhm.tdf            ; yes             ; Auto-Generated Megafunction  ; E:/QuartusDate/xiaoche/test13/top/db/lpm_divide_mhm.tdf        ;         ;
+; db/sign_div_unsign_nlh.tdf       ; yes             ; Auto-Generated Megafunction  ; E:/QuartusDate/xiaoche/test13/top/db/sign_div_unsign_nlh.tdf   ;         ;
+; db/alt_u_div_p5f.tdf             ; yes             ; Auto-Generated Megafunction  ; E:/QuartusDate/xiaoche/test13/top/db/alt_u_div_p5f.tdf         ;         ;
+; db/add_sub_unc.tdf               ; yes             ; Auto-Generated Megafunction  ; E:/QuartusDate/xiaoche/test13/top/db/add_sub_unc.tdf           ;         ;
+; db/add_sub_vnc.tdf               ; yes             ; Auto-Generated Megafunction  ; E:/QuartusDate/xiaoche/test13/top/db/add_sub_vnc.tdf           ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 1,565       ;
+;                                             ;             ;
+; Total combinational functions               ; 1497        ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 389         ;
+;     -- 3 input functions                    ; 398         ;
+;     -- <=2 input functions                  ; 710         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 927         ;
+;     -- arithmetic mode                      ; 570         ;
+;                                             ;             ;
+; Total registers                             ; 389         ;
+;     -- Dedicated logic registers            ; 389         ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 21          ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+; Maximum fan-out node                        ; reset~input ;
+; Maximum fan-out                             ; 390         ;
+; Total fan-out                               ; 5526        ;
+; Average fan-out                             ; 2.87        ;
++---------------------------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                             ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                   ; Library Name ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |top                                         ; 1497 (0)          ; 389 (0)      ; 0           ; 0            ; 0       ; 0         ; 21   ; 0            ; |top                                                                                                                                                  ; work         ;
+;    |xiaoche:xiaoche_instance|                ; 1497 (344)        ; 389 (133)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance                                                                                                                         ; work         ;
+;       |PosCounter:pos_counter1|              ; 311 (46)          ; 44 (44)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1                                                                                                 ; work         ;
+;          |lpm_divide:Div0|                   ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0                                                                                 ; work         ;
+;             |lpm_divide_mhm:auto_generated|  ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0|lpm_divide_mhm:auto_generated                                                   ; work         ;
+;                |sign_div_unsign_nlh:divider| ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider                       ; work         ;
+;                   |alt_u_div_p5f:divider|    ; 265 (265)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_p5f:divider ; work         ;
+;       |PosCounter:pos_counter2|              ; 311 (46)          ; 44 (44)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2                                                                                                 ; work         ;
+;          |lpm_divide:Div0|                   ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0                                                                                 ; work         ;
+;             |lpm_divide_mhm:auto_generated|  ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0|lpm_divide_mhm:auto_generated                                                   ; work         ;
+;                |sign_div_unsign_nlh:divider| ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider                       ; work         ;
+;                   |alt_u_div_p5f:divider|    ; 265 (265)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_p5f:divider ; work         ;
+;       |PosCounter:pos_counter3|              ; 311 (46)          ; 44 (44)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3                                                                                                 ; work         ;
+;          |lpm_divide:Div0|                   ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0                                                                                 ; work         ;
+;             |lpm_divide_mhm:auto_generated|  ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0|lpm_divide_mhm:auto_generated                                                   ; work         ;
+;                |sign_div_unsign_nlh:divider| ; 265 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider                       ; work         ;
+;                   |alt_u_div_p5f:divider|    ; 265 (265)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0|lpm_divide_mhm:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_p5f:divider ; work         ;
+;       |boche:boche_executor|                 ; 75 (75)           ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|boche:boche_executor                                                                                                    ; work         ;
+;       |everything:path_executor|             ; 64 (64)           ; 45 (45)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|everything:path_executor                                                                                                ; work         ;
+;       |xunji:xunji_instance|                 ; 81 (81)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|xiaoche:xiaoche_instance|xunji:xunji_instance                                                                                                    ; work         ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|steer_state                                                                                                  ;
++---------------------------+------------------------+-------------------------+---------------------------+------------------------+------------------------+
+; Name                      ; steer_state.STEER_LEFT ; steer_state.STEER_RIGHT ; steer_state.STEER_FORWARD ; steer_state.STEER_IDLE ; steer_state.STEER_BACK ;
++---------------------------+------------------------+-------------------------+---------------------------+------------------------+------------------------+
+; steer_state.STEER_IDLE    ; 0                      ; 0                       ; 0                         ; 0                      ; 0                      ;
+; steer_state.STEER_FORWARD ; 0                      ; 0                       ; 1                         ; 1                      ; 0                      ;
+; steer_state.STEER_RIGHT   ; 0                      ; 1                       ; 0                         ; 1                      ; 0                      ;
+; steer_state.STEER_LEFT    ; 1                      ; 0                       ; 0                         ; 1                      ; 0                      ;
+; steer_state.STEER_BACK    ; 0                      ; 0                       ; 0                         ; 1                      ; 1                      ;
++---------------------------+------------------------+-------------------------+---------------------------+------------------------+------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|boche:boche_executor|current_state                                                                         ;
++----------------------------+----------------------------+---------------------------+--------------------------+--------------------+--------------------+
+; Name                       ; current_state.FORWARD_2S_2 ; current_state.RIGHT_200MS ; current_state.FORWARD_2S ; current_state.IDLE ; current_state.stop ;
++----------------------------+----------------------------+---------------------------+--------------------------+--------------------+--------------------+
+; current_state.IDLE         ; 0                          ; 0                         ; 0                        ; 0                  ; 0                  ;
+; current_state.FORWARD_2S   ; 0                          ; 0                         ; 1                        ; 1                  ; 0                  ;
+; current_state.RIGHT_200MS  ; 0                          ; 1                         ; 0                        ; 1                  ; 0                  ;
+; current_state.FORWARD_2S_2 ; 1                          ; 0                         ; 0                        ; 1                  ; 0                  ;
+; current_state.stop         ; 0                          ; 0                         ; 0                        ; 1                  ; 1                  ;
++----------------------------+----------------------------+---------------------------+--------------------------+--------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|everything:path_executor|current_state                                                                                                                                                                                                                          ;
++-----------------------------+--------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+---------------------------+--------------------------+--------------------+
+; Name                        ; current_state.stop ; current_state.RIGHT_200MS_4 ; current_state.FORWARD_2S_4 ; current_state.RIGHT_200MS_3 ; current_state.FORWARD_2S_3 ; current_state.RIGHT_200MS_2 ; current_state.FORWARD_2S_2 ; current_state.RIGHT_200MS ; current_state.FORWARD_2S ; current_state.IDLE ;
++-----------------------------+--------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+---------------------------+--------------------------+--------------------+
+; current_state.IDLE          ; 0                  ; 0                           ; 0                          ; 0                           ; 0                          ; 0                           ; 0                          ; 0                         ; 0                        ; 0                  ;
+; current_state.FORWARD_2S    ; 0                  ; 0                           ; 0                          ; 0                           ; 0                          ; 0                           ; 0                          ; 0                         ; 1                        ; 1                  ;
+; current_state.RIGHT_200MS   ; 0                  ; 0                           ; 0                          ; 0                           ; 0                          ; 0                           ; 0                          ; 1                         ; 0                        ; 1                  ;
+; current_state.FORWARD_2S_2  ; 0                  ; 0                           ; 0                          ; 0                           ; 0                          ; 0                           ; 1                          ; 0                         ; 0                        ; 1                  ;
+; current_state.RIGHT_200MS_2 ; 0                  ; 0                           ; 0                          ; 0                           ; 0                          ; 1                           ; 0                          ; 0                         ; 0                        ; 1                  ;
+; current_state.FORWARD_2S_3  ; 0                  ; 0                           ; 0                          ; 0                           ; 1                          ; 0                           ; 0                          ; 0                         ; 0                        ; 1                  ;
+; current_state.RIGHT_200MS_3 ; 0                  ; 0                           ; 0                          ; 1                           ; 0                          ; 0                           ; 0                          ; 0                         ; 0                        ; 1                  ;
+; current_state.FORWARD_2S_4  ; 0                  ; 0                           ; 1                          ; 0                           ; 0                          ; 0                           ; 0                          ; 0                         ; 0                        ; 1                  ;
+; current_state.RIGHT_200MS_4 ; 0                  ; 1                           ; 0                          ; 0                           ; 0                          ; 0                           ; 0                          ; 0                         ; 0                        ; 1                  ;
+; current_state.stop          ; 1                  ; 0                           ; 0                          ; 0                           ; 0                          ; 0                           ; 0                          ; 0                         ; 0                        ; 1                  ;
++-----------------------------+--------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+-----------------------------+----------------------------+---------------------------+--------------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|curr_state ;
++---------------+---------------+---------------+----------------------------------+
+; Name          ; curr_state.S0 ; curr_state.S2 ; curr_state.S1                    ;
++---------------+---------------+---------------+----------------------------------+
+; curr_state.S0 ; 0             ; 0             ; 0                                ;
+; curr_state.S1 ; 1             ; 0             ; 1                                ;
+; curr_state.S2 ; 1             ; 1             ; 0                                ;
++---------------+---------------+---------------+----------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|curr_state ;
++---------------+---------------+---------------+----------------------------------+
+; Name          ; curr_state.S0 ; curr_state.S2 ; curr_state.S1                    ;
++---------------+---------------+---------------+----------------------------------+
+; curr_state.S0 ; 0             ; 0             ; 0                                ;
+; curr_state.S1 ; 1             ; 0             ; 1                                ;
+; curr_state.S2 ; 1             ; 1             ; 0                                ;
++---------------+---------------+---------------+----------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------+
+; State Machine - |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|curr_state ;
++---------------+---------------+---------------+----------------------------------+
+; Name          ; curr_state.S0 ; curr_state.S2 ; curr_state.S1                    ;
++---------------+---------------+---------------+----------------------------------+
+; curr_state.S0 ; 0             ; 0             ; 0                                ;
+; curr_state.S1 ; 1             ; 0             ; 1                                ;
+; curr_state.S2 ; 1             ; 1             ; 0                                ;
++---------------+---------------+---------------+----------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                          ;
++--------------------------------------------------------------------+------------------------------------------------------------------------+
+; Register name                                                      ; Reason for Removal                                                     ;
++--------------------------------------------------------------------+------------------------------------------------------------------------+
+; xiaoche:xiaoche_instance|distance1[20..31]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|distance2[20..31]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|distance3[20..31]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[5..7]      ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|boche:boche_executor|left[0]              ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[7]         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|left[1]          ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|pwm_value[7]     ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|pwm_value[5,6]   ; Stuck at VCC due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|pwm_value[4]     ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|pwm_value[1..3]  ; Stuck at VCC due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|everything:path_executor|pwm_value[0]     ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[6]         ; Merged with xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[2] ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[5]         ; Merged with xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[1] ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[3]         ; Merged with xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[4] ;
+; xiaoche:xiaoche_instance|steer_state~9                             ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|steer_state~10                            ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|boche:boche_executor|current_state~9      ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|boche:boche_executor|current_state~10     ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|boche:boche_executor|current_state~11     ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|everything:path_executor|current_state~14 ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|everything:path_executor|current_state~15 ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|everything:path_executor|current_state~16 ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|everything:path_executor|current_state~17 ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|steer_state.STEER_IDLE                    ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|clk_div[0]                                ; Merged with xiaoche:xiaoche_instance|pwm_counter[0]                    ;
+; xiaoche:xiaoche_instance|distance2[15..19]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|distance1[15..19]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|distance3[15..19]                         ; Stuck at GND due to stuck port data_in                                 ;
+; xiaoche:xiaoche_instance|PosCounter:pos_counter3|dis_reg[0]        ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|PosCounter:pos_counter1|dis_reg[0]        ; Lost fanout                                                            ;
+; xiaoche:xiaoche_instance|PosCounter:pos_counter2|dis_reg[0]        ; Lost fanout                                                            ;
+; Total Number of Removed Registers = 82                             ;                                                                        ;
++--------------------------------------------------------------------+------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 389   ;
+; Number of registers using Synchronous Clear  ; 143   ;
+; Number of registers using Synchronous Load   ; 2     ;
+; Number of registers using Asynchronous Clear ; 389   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 187   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------+
+; Inverted Register Statistics                                         ;
++------------------------------------------------------------+---------+
+; Inverted Register                                          ; Fan out ;
++------------------------------------------------------------+---------+
+; xiaoche:xiaoche_instance|pwm_threshold[7]                  ; 1       ;
+; xiaoche:xiaoche_instance|pwm_threshold[6]                  ; 1       ;
+; xiaoche:xiaoche_instance|pwm_threshold[3]                  ; 1       ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[2] ; 1       ;
+; xiaoche:xiaoche_instance|boche:boche_executor|pwm_value[1] ; 3       ;
+; xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[4] ; 1       ;
+; xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[3] ; 1       ;
+; xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[2] ; 1       ;
+; xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[1] ; 1       ;
+; Total number of inverted registers = 9                     ;         ;
++------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |top|xiaoche:xiaoche_instance|right[0]                                  ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |top|xiaoche:xiaoche_instance|xunji:xunji_instance|all_white_counter[2] ;
+; 4:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top|xiaoche:xiaoche_instance|enable_counter[8]                         ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |top|xiaoche:xiaoche_instance|pwm_threshold[0]                          ;
+; 9:1                ; 32 bits   ; 192 LEs       ; 32 LEs               ; 160 LEs                ; Yes        ; |top|xiaoche:xiaoche_instance|boche:boche_executor|timer[31]            ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |top|xiaoche:xiaoche_instance|everything:path_executor|timer[5]         ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |top|xiaoche:xiaoche_instance|xunji:xunji_instance|right_dir[1]         ;
+; 19:1               ; 3 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |top|xiaoche:xiaoche_instance|xunji:xunji_instance|left_dir[1]          ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; Yes        ; |top|xiaoche:xiaoche_instance|xunji:xunji_instance|pwm_value[3]         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|Mux8                                      ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|min_distance                              ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter3|Selector1         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter2|Selector2         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|PosCounter:pos_counter1|Selector2         ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 10 LEs               ; 6 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|Mux10                                     ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |top|xiaoche:xiaoche_instance|boche:boche_executor|current_state        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance ;
++------------------+----------+-----------------------------------------+
+; Parameter Name   ; Value    ; Type                                    ;
++------------------+----------+-----------------------------------------+
+; MODE_AVOID       ; 00       ; Unsigned Binary                         ;
+; MODE_TRACK       ; 01       ; Unsigned Binary                         ;
+; MODE_PATH1       ; 10       ; Unsigned Binary                         ;
+; MODE_PATH2       ; 11       ; Unsigned Binary                         ;
+; CLK_FREQ         ; 20000000 ; Signed Integer                          ;
+; MS20_COUNT       ; 400000   ; Signed Integer                          ;
+; IDLE             ; 0        ; Signed Integer                          ;
+; COUNTING         ; 1        ; Signed Integer                          ;
+; SOUND_SPEED      ; 340      ; Signed Integer                          ;
+; TRIG_INTERVAL    ; 2857142  ; Signed Integer                          ;
+; TRIG_PULSE_WIDTH ; 200      ; Signed Integer                          ;
+; DISTANCE_1M      ; 40       ; Signed Integer                          ;
+; DISTANCE_0_5M    ; 30       ; Signed Integer                          ;
+; DISTANCE_0_1M    ; 15       ; Signed Integer                          ;
+; STEER_IDLE       ; 0        ; Signed Integer                          ;
+; STEER_FORWARD    ; 1        ; Signed Integer                          ;
+; STEER_RIGHT      ; 2        ; Signed Integer                          ;
+; STEER_LEFT       ; 3        ; Signed Integer                          ;
+; STEER_BACK       ; 4        ; Signed Integer                          ;
++------------------+----------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter1 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; S0             ; 00    ; Unsigned Binary                                                      ;
+; S1             ; 01    ; Unsigned Binary                                                      ;
+; S2             ; 10    ; Unsigned Binary                                                      ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter2 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; S0             ; 00    ; Unsigned Binary                                                      ;
+; S1             ; 01    ; Unsigned Binary                                                      ;
+; S2             ; 10    ; Unsigned Binary                                                      ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter3 ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; S0             ; 00    ; Unsigned Binary                                                      ;
+; S1             ; 01    ; Unsigned Binary                                                      ;
+; S2             ; 10    ; Unsigned Binary                                                      ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|everything:path_executor ;
++----------------+----------+--------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                               ;
++----------------+----------+--------------------------------------------------------------------+
+; CLK_FREQ       ; 20000000 ; Signed Integer                                                     ;
+; IDLE           ; 0        ; Signed Integer                                                     ;
+; FORWARD_2S     ; 1        ; Signed Integer                                                     ;
+; RIGHT_200MS    ; 2        ; Signed Integer                                                     ;
+; FORWARD_2S_2   ; 3        ; Signed Integer                                                     ;
+; RIGHT_200MS_2  ; 4        ; Signed Integer                                                     ;
+; FORWARD_2S_3   ; 5        ; Signed Integer                                                     ;
+; RIGHT_200MS_3  ; 6        ; Signed Integer                                                     ;
+; FORWARD_2S_4   ; 7        ; Signed Integer                                                     ;
+; RIGHT_200MS_4  ; 8        ; Signed Integer                                                     ;
+; stop           ; 9        ; Signed Integer                                                     ;
+; TIME_2S        ; 40000000 ; Signed Integer                                                     ;
+; TIME_200MS     ; 4000000  ; Signed Integer                                                     ;
+; TIME_500MS     ; 10000000 ; Signed Integer                                                     ;
+; TIME_700MS     ; 16000000 ; Signed Integer                                                     ;
+; TIME_1S        ; 20000000 ; Signed Integer                                                     ;
+; TIME_15S       ; 30000000 ; Signed Integer                                                     ;
+; TIME_12S       ; 24000000 ; Signed Integer                                                     ;
+; PWM_FULL       ; 110      ; Signed Integer                                                     ;
+; PWM_SLOW       ; 110      ; Signed Integer                                                     ;
+; PWM_STOP       ; 0        ; Signed Integer                                                     ;
++----------------+----------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|boche:boche_executor ;
++----------------+----------+----------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                           ;
++----------------+----------+----------------------------------------------------------------+
+; CLK_FREQ       ; 20000000 ; Signed Integer                                                 ;
+; IDLE           ; 0        ; Signed Integer                                                 ;
+; FORWARD_2S     ; 1        ; Signed Integer                                                 ;
+; RIGHT_200MS    ; 2        ; Signed Integer                                                 ;
+; FORWARD_2S_2   ; 3        ; Signed Integer                                                 ;
+; RIGHT_200MS_2  ; 4        ; Signed Integer                                                 ;
+; FORWARD_2S_3   ; 5        ; Signed Integer                                                 ;
+; RIGHT_200MS_3  ; 6        ; Signed Integer                                                 ;
+; FORWARD_2S_4   ; 7        ; Signed Integer                                                 ;
+; RIGHT_200MS_4  ; 8        ; Signed Integer                                                 ;
+; stop           ; 9        ; Signed Integer                                                 ;
+; TIME_2S        ; 12000000 ; Signed Integer                                                 ;
+; TIME_200MS     ; 4000000  ; Signed Integer                                                 ;
+; TIME_400MS     ; 8000000  ; Signed Integer                                                 ;
+; TIME_500MS     ; 10000000 ; Signed Integer                                                 ;
+; TIME_1S        ; 20000000 ; Signed Integer                                                 ;
+; TIME_15S       ; 30000000 ; Signed Integer                                                 ;
+; TIME_12S       ; 24000000 ; Signed Integer                                                 ;
+; PWM_FULL       ; 110      ; Signed Integer                                                 ;
+; PWM_SLOW       ; 85       ; Signed Integer                                                 ;
+; PWM_STOP       ; 0        ; Signed Integer                                                 ;
+; PWM_little     ; 50       ; Signed Integer                                                 ;
++----------------+----------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: xiaoche:xiaoche_instance|xunji:xunji_instance ;
++----------------+----------+----------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                           ;
++----------------+----------+----------------------------------------------------------------+
+; PWM_7_PERCENT  ; 3        ; Signed Integer                                                 ;
+; PWM_10_PERCENT ; 5        ; Signed Integer                                                 ;
+; PWM_13_PERCENT ; 8        ; Signed Integer                                                 ;
+; PWM_15_PERCENT ; 10       ; Signed Integer                                                 ;
+; PWM_20_PERCENT ; 15       ; Signed Integer                                                 ;
+; PWM_21_PERCENT ; 20       ; Signed Integer                                                 ;
+; PWM_25_PERCENT ; 25       ; Signed Integer                                                 ;
+; PWM_30_PERCENT ; 30       ; Signed Integer                                                 ;
+; CLK_FREQ       ; 20000000 ; Signed Integer                                                 ;
+; MS500_COUNT    ; 600000   ; Signed Integer                                                 ;
++----------------+----------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                    ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 20             ; Untyped                                                                 ;
+; LPM_WIDTHD             ; 6              ; Untyped                                                                 ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                 ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                 ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                 ;
+; CBXI_PARAMETER         ; lpm_divide_mhm ; Untyped                                                                 ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                 ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                 ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                              ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                            ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                            ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                          ;
++------------------------+----------------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter1|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                    ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 20             ; Untyped                                                                 ;
+; LPM_WIDTHD             ; 6              ; Untyped                                                                 ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                 ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                 ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                 ;
+; CBXI_PARAMETER         ; lpm_divide_mhm ; Untyped                                                                 ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                 ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                 ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                              ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                            ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                            ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                          ;
++------------------------+----------------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: xiaoche:xiaoche_instance|PosCounter:pos_counter3|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                    ;
++------------------------+----------------+-------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 20             ; Untyped                                                                 ;
+; LPM_WIDTHD             ; 6              ; Untyped                                                                 ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                 ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                 ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                 ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                 ;
+; CBXI_PARAMETER         ; lpm_divide_mhm ; Untyped                                                                 ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                 ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                 ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                              ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                            ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                            ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                          ;
++------------------------+----------------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "xiaoche:xiaoche_instance|boche:boche_executor"                                        ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; active ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "xiaoche:xiaoche_instance|everything:path_executor"                                    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; active ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.1.0 Build 162 10/23/2013 SJ Full Version
+    Info: Processing started: Sat Oct 18 22:42:50 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
+Info (11104): Parallel Compilation has detected 24 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 16 of the 16 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file top.v
+    Info (12023): Found entity 1: top
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Warning (12125): Using design file /quartusdate/xiaoche/test13/xiaoche/xiaoche.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: xiaoche
+Info (12128): Elaborating entity "xiaoche" for hierarchy "xiaoche:xiaoche_instance"
+Warning (10230): Verilog HDL assignment warning at xiaoche.v(61): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at xiaoche.v(157): truncated value with size 32 to match size of target (19)
+Warning (10230): Verilog HDL assignment warning at xiaoche.v(160): truncated value with size 32 to match size of target (2)
+Warning (10230): Verilog HDL assignment warning at xiaoche.v(211): truncated value with size 32 to match size of target (8)
+Info (10264): Verilog HDL Case Statement information at xiaoche.v(328): all case item expressions in this case statement are onehot
+Warning (12125): Using design file /quartusdate/xiaoche/test13/poscounter/poscounter.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: PosCounter
+Info (12128): Elaborating entity "PosCounter" for hierarchy "xiaoche:xiaoche_instance|PosCounter:pos_counter1"
+Warning (12125): Using design file /quartusdate/xiaoche/test13/everything/everything.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: everything
+Info (12128): Elaborating entity "everything" for hierarchy "xiaoche:xiaoche_instance|everything:path_executor"
+Warning (10230): Verilog HDL assignment warning at everything.v(48): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(66): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(81): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(96): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(111): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(126): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(141): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(156): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at everything.v(171): truncated value with size 32 to match size of target (8)
+Warning (12125): Using design file /quartusdate/xiaoche/test13/boche/boche.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: boche
+Info (12128): Elaborating entity "boche" for hierarchy "xiaoche:xiaoche_instance|boche:boche_executor"
+Warning (10230): Verilog HDL assignment warning at boche.v(50): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at boche.v(72): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at boche.v(85): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at boche.v(98): truncated value with size 32 to match size of target (8)
+Warning (12125): Using design file /quartusdate/xiaoche/test13/xunji/xunji.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: xunji
+Info (12128): Elaborating entity "xunji" for hierarchy "xiaoche:xiaoche_instance|xunji:xunji_instance"
+Warning (10230): Verilog HDL assignment warning at xunji.v(37): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(43): truncated value with size 32 to match size of target (24)
+Warning (10230): Verilog HDL assignment warning at xunji.v(47): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(52): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(61): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(66): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(71): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(76): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(81): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(89): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(94): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(99): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(104): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(109): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(114): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(121): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(126): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(131): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(136): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(141): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(146): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(151): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at xunji.v(156): truncated value with size 32 to match size of target (8)
+Info (278001): Inferred 3 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "xiaoche:xiaoche_instance|PosCounter:pos_counter2|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "xiaoche:xiaoche_instance|PosCounter:pos_counter1|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "xiaoche:xiaoche_instance|PosCounter:pos_counter3|Div0"
+Info (12130): Elaborated megafunction instantiation "xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "xiaoche:xiaoche_instance|PosCounter:pos_counter2|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "20"
+    Info (12134): Parameter "LPM_WIDTHD" = "6"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_mhm.tdf
+    Info (12023): Found entity 1: lpm_divide_mhm
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_nlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_nlh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_p5f.tdf
+    Info (12023): Found entity 1: alt_u_div_p5f
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_unc.tdf
+    Info (12023): Found entity 1: add_sub_unc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_vnc.tdf
+    Info (12023): Found entity 1: add_sub_vnc
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 13 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file E:/QuartusDate/xiaoche/test13/top/output_files/top.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1586 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 8 output pins
+    Info (21061): Implemented 1565 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 45 warnings
+    Info: Peak virtual memory: 4689 megabytes
+    Info: Processing ended: Sat Oct 18 22:42:52 2025
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in E:/QuartusDate/xiaoche/test13/top/output_files/top.map.smsg.
+
+
